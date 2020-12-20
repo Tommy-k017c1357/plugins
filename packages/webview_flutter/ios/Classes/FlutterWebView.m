@@ -91,6 +91,10 @@
     [self updateAutoMediaPlaybackPolicy:args[@"autoMediaPlaybackPolicy"]
                         inConfiguration:configuration];
 
+    if (@available(iOS 13.0, *)) {
+        configuration.defaultWebpagePreferences.preferredContentMode = WKContentModeMobile;
+    }
+
     _webView = [[FLTWKWebView alloc] initWithFrame:frame configuration:configuration];
     _navigationDelegate = [[FLTWKNavigationDelegate alloc] initWithChannel:_channel];
     _webView.UIDelegate = self;
